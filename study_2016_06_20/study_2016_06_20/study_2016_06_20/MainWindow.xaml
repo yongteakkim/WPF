@@ -74,7 +74,8 @@
                                     <Setter TargetName="CenterRect" Property="Opacity" Value="0.5"/>
                                     <Setter TargetName="CenterButton" Property="Visibility" Value="Collapsed"/>
                                     <Setter TargetName="LeftTopButton" Property="Visibility" Value="Visible"/>
-                                </DataTrigger >                                
+                                </DataTrigger >
+                                <!-- TEST -->
                                 <!-- TEST -->
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
