@@ -20,68 +20,83 @@
                 </Grid.RowDefinitions>
                 <Button>
                     <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Grid>    
-                                <Rectangle Name="CenterRect" Fill="Gray" Opacity="0"/>                               
-                                <Button Name="CenterButton" Width="100" Height="30" Visibility="Hidden">
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Grid>
+                                <Rectangle Name="CenterRec" Fill="Gray" Opacity="0" />
+                                <ToggleButton Name="LeftTopButton" Background="Black" Visibility="Collapsed" Width="15" Height="15" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                    <ToggleButton.Template>
+                                        <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                            <Ellipse Name="el" Fill="Aqua" />
+                                            <ControlTemplate.Triggers>                                                
+                                                <Trigger Property="IsChecked" Value="True">
+                                                    <Setter TargetName="el" Property="Fill" Value="Blue"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>                                            
+                                        </ControlTemplate>
+                                    </ToggleButton.Template>
+                                </ToggleButton>
+                                <Button Name="CenterButton" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Red" Visibility="Collapsed">
                                     <Button.Template>
-                                        <ControlTemplate TargetType="Button">
+                                        <ControlTemplate TargetType="{x:Type Button}">
                                             <Grid>
-                                                <Rectangle Name="btn" Fill="Red" RadiusX="5" RadiusY="5"/>                                               
+                                                <Button Name="bt" Width="100" Height="50" Background="Orange" VerticalAlignment="Center" HorizontalAlignment="Center" />
                                                 <ContentPresenter/>
-                                            </Grid>
+                                            </Grid>                                            
                                             <ControlTemplate.Triggers>
                                                 <Trigger Property="IsPressed" Value="True">
-                                                    <Setter TargetName="btn" Property="Fill" Value="Yellow"/>                                                   
-                                                </Trigger>                                       
-                                            </ControlTemplate.Triggers>
-                                        </ControlTemplate>
+                                                    <Setter TargetName="bt" Property="Background" Value="Yellow"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>                                            
+                                        </ControlTemplate>                                        
                                     </Button.Template>
                                     <Button.ContentTemplate>
                                         <DataTemplate>
-                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">View Screen</TextBlock>
+                                            <TextBlock Text="Hello WPF" VerticalAlignment="Center" HorizontalAlignment="Center" />
                                         </DataTemplate>
                                     </Button.ContentTemplate>
                                 </Button>
-                                <ToggleButton Name="LeftTopButton" Width="10" Height="10" VerticalAlignment="Top" HorizontalAlignment="Left" Visibility="Collapsed">
+                                <ToggleButton Name="RightTopButton" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="Collapsed"> 
                                     <ToggleButton.Template>
                                         <ControlTemplate TargetType="{x:Type ToggleButton}">
                                             <Grid>
-                                                <Ellipse Name="El" Fill="Black" />
+                                                <Rectangle Name="Rt" Fill="AliceBlue" VerticalAlignment="Top" HorizontalAlignment="Right" Width="15" Height="15"/>
                                                 <ContentPresenter/>
-                                            </Grid>                                           
+                                            </Grid>
                                             <ControlTemplate.Triggers>
-                                                <Trigger Property="IsPressed" Value="True">
-                                                    <Setter TargetName="El" Property="Fill" Value="Blue"/>
-                                                </Trigger>
                                                 <Trigger Property="IsChecked" Value="True">
-                                                    <Setter TargetName="El" Property="Fill" Value="Red"/>
+                                                    <Setter TargetName="Rt" Property="Fill" Value="Blue"/>
                                                 </Trigger>
                                             </ControlTemplate.Triggers>
                                         </ControlTemplate>
                                     </ToggleButton.Template>
                                 </ToggleButton>
-                                
-                                <ContentPresenter/>
+                                <ContentPresenter/>                                
                             </Grid>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="CenterRect" Property="Opacity" Value="0.5"/>
-                                    <Setter TargetName="CenterButton" Property="Visibility" Value="Visible"/> 
+                                    <Setter TargetName="CenterRec" Property="Opacity" Value="0.5"/> 
                                     <Setter TargetName="LeftTopButton" Property="Visibility" Value="Visible"/>
-                                </Trigger>     
-                                <DataTrigger Binding="{Binding IsChecked, ElementName=LeftTopButton}"  Value="True">
-                                    <Setter TargetName="CenterRect" Property="Opacity" Value="0.5"/>
-                                    <Setter TargetName="CenterButton" Property="Visibility" Value="Collapsed"/>
-                                    <Setter TargetName="LeftTopButton" Property="Visibility" Value="Visible"/>
-                                </DataTrigger >
-                                <!-- TEST -->
-                                <!-- TEST -->
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Button.Template>
+                                    <Setter TargetName="CenterButton" Property="Visibility" Value="Visible"/>
+                                    <Setter TargetName="RightTopButton" Property="Visibility" Value="Visible"/>
+                                </Trigger>
+                                <DataTrigger Binding="{Binding IsChecked, ElementName=LeftTopButton}" Value="True">
+                                    <Setter TargetName="CenterButton" Property="Visibility" Value="Collapsed"/>                                   
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsChecked, ElementName=RightTopButton}" Value="True">                                   
+                                    <Setter TargetName="CenterButton" Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </ControlTemplate.Triggers>                           
+                        </ControlTemplate>                       
+                    </Button.Template>                    
+                   
                 </Button>
             </Grid>
         </Grid>
     </Border>
 </Window>
+
+
+
+
+
+
