@@ -43,21 +43,24 @@
                                         </DataTemplate>
                                     </Button.ContentTemplate>
                                 </Button>
-                                <Button Name="LeftTopButton" Width="10" Height="10" VerticalAlignment="Top" HorizontalAlignment="Left" Visibility="Hidden">
-                                    <Button.Template>
-                                        <ControlTemplate TargetType="Button">
+                                <ToggleButton Name="LeftTopButton" Width="10" Height="10" VerticalAlignment="Top" HorizontalAlignment="Left" Visibility="Collapsed">
+                                    <ToggleButton.Template>
+                                        <ControlTemplate TargetType="{x:Type ToggleButton}">
                                             <Grid>
-                                                <Ellipse Name="El" Fill="Red" />
+                                                <Ellipse Name="El" Fill="Black" />
                                                 <ContentPresenter/>
                                             </Grid>                                           
                                             <ControlTemplate.Triggers>
                                                 <Trigger Property="IsPressed" Value="True">
                                                     <Setter TargetName="El" Property="Fill" Value="Blue"/>
-                                                </Trigger>                                               
+                                                </Trigger>
+                                                <Trigger Property="IsChecked" Value="True">
+                                                    <Setter TargetName="El" Property="Fill" Value="Red"/>
+                                                </Trigger>
                                             </ControlTemplate.Triggers>
                                         </ControlTemplate>
-                                    </Button.Template>
-                                </Button>
+                                    </ToggleButton.Template>
+                                </ToggleButton>
                                 
                                 <ContentPresenter/>
                             </Grid>
@@ -66,7 +69,12 @@
                                     <Setter TargetName="CenterRect" Property="Opacity" Value="0.5"/>
                                     <Setter TargetName="CenterButton" Property="Visibility" Value="Visible"/> 
                                     <Setter TargetName="LeftTopButton" Property="Visibility" Value="Visible"/>
-                                </Trigger>                                
+                                </Trigger>     
+                                <DataTrigger Binding="{Binding IsChecked, ElementName=LeftTopButton}"  Value="True">
+                                    <Setter TargetName="CenterRect" Property="Opacity" Value="0.5"/>
+                                    <Setter TargetName="CenterButton" Property="Visibility" Value="Collapsed"/>
+                                    <Setter TargetName="LeftTopButton" Property="Visibility" Value="Visible"/>
+                                </DataTrigger>                                
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Button.Template>
