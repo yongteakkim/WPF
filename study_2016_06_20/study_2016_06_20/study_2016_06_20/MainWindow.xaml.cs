@@ -23,6 +23,6 @@ namespace study_2016_06_20
         public MainWindow()
         {
             InitializeComponent();
-        }
+        } 
     }
 }
